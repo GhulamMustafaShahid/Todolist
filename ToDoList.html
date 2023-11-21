@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <title>To-Do list</title>
+</head>
+
+<!--Add Some CSS-->
+
+<style>
+
+   /*Style The Bode*/
+
+   body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-image:linear-gradient(to bottom right, rgb(255, 255, 255),rgb(10, 240, 137));
+}
+
+/*Style The Container*/
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/*Style The Content*/
+
+.content {
+    background-color: white;
+    min-height: 400px;
+    width: 540px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/*Style The H1*/
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Style the input */
+
+input[type = "text"] {
+    font-size: medium;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+}
+
+/* Style the "Add" button */
+
+button {
+    padding: 10px 20px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Style the list items (ul) */
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style the list items (li) */
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style The Delete-btn*/
+
+.delete-btn {
+    background-color: #dc5635;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+ /* When clicked on, add a background color and strike out text */
+
+ ul li.checked {
+   background:  rgb(12, 171, 107);
+   color: #f7f2f2;
+   text-decoration: line-through;
+ }
+
+</style>
+
+<!--Add Some HTML-->
+
+<body>
+ 
+   <div class="container">
+        <div class="content">
+            <h1>My To-Do List</h1>
+            <input type="text" id="task-input" placeholder="Add a new task...">
+            <button id="add-btn">Add Task</button>
+            <ul id="task-list"></ul>
+        </div>
+    </div>
+
+    <!--Add Some jAVE SCRIPT-->
+
+<script>
+
+   const taskInput = document.getElementById('task-input');
+const addBtn = document.getElementById('add-btn');
+const taskList = document.getElementById('task-list');
+
+
+// Add a "checked" symbol when clicking on a list item
+
+var list = document.querySelector('div');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+    alert("You Complete This Task!");
+  }
+}, false);
+
+//EventListeners
+
+addBtn.addEventListener('click', () => {
+    if(taskInput.value !== ""){
+        const taskText = taskInput.value;
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+                                ${taskText}
+                                <button class="delete-btn">Delete</button>
+                                `;
+        taskList.appendChild(listItem);
+        taskInput.value = "";                     
+    }
+});
+
+taskList.addEventListener('click', (event) => {
+    if(event.target.classList.contains("delete-btn")) {
+        const listItem = event.target.parentElement;
+        alert("Delete This Task!");
+        taskList.removeChild(listItem);
+    }
+})
+  
+  </script>
+</body>
+</html>
+youutbe Channel Name: Learn Web Development
+video link : https://youtu.be/DjWMYbgI-PQ?si=xprqIOogrOy70Ddl
