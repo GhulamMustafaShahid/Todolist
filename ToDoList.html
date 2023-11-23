@@ -1,176 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <title>To-Do list</title>
-</head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!--Add Some CSS-->
+    <title>To Do List </title>
+
+    <!-- Font Awesome Icons -->
+
+    <link
+
+    rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
 
 <style>
 
-   /*Style The Bode*/
+/*Style The Bode*/
 
-   body {
+* {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
     margin: 0;
     padding: 0;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
-    background-image:linear-gradient(to bottom right, rgb(255, 255, 255),rgb(10, 240, 137));
-}
+    background-image: linear-gradient(to bottom right, rgb(12, 171, 107),rgb(10,213,240));
+    }
+    .container {
+      width: 70%;
+      max-width: 30em;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+    #new-task {
+      position: relative;
+      background-color: #ffffff;
+      padding: 1.8em 1.25em;
+      border-radius: 0.3em;
+      box-shadow: 0 1.25em 1.8em rgba(1, 24, 48, 0.15);
+      display: grid;
+      grid-template-columns: 9fr 3fr;
+      gap: 1em;
+    }
+    #new-task input {
+      font-family: "Poppins", sans-serif;
+      font-size: 1em;
+      border: none;
+      border-bottom: 2px solid #d1d3d4;
+      padding: 0.8em 0.5em;
+      color: #111111;
+      font-weight: 500;
+    }
+    #new-task input:focus {
+      outline: none;
+      border-color: #0b87ff;
+    }
+    #new-task button {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 1em;
+      background-color: #fb3b3b;
+      color: #ffffff;
+      outline: none;
+      border: none;
+      border-radius: 0.3em;
+      cursor: pointer;
+    }
+    #tasks {
+      background-color: #ffffff;
+      position: relative;
+      padding: 1.8em 1.25em;
+      margin-top: 3.8em;
+      width: 100%;
+      box-shadow: 0 1.25em 1.8em rgba(1, 24, 48, 0.15);
+      border-radius: 0.6em;
+    }
+    .task {
+      background-color: #ffffff;
+      padding: 0.3em 0.6em;
+      margin-top: 0.6em;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #d1d3d4;
+      cursor: pointer;
+    }
+    .task span {
+      font-family: "Poppins", sans-serif;
+      font-size: 0.9em;
+      font-weight: 400;
+    }
+    .task button {
+      color: #ffffff;
+      padding: 0.8em 0;
+      width: 2.8em;
+      border-radius: 0.3em;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .delete {
+      background-color: #fb3b3b;
+    }
+    .edit {
+      background-color: #0b87ff;
+      margin-left: auto;
+      margin-right: 3em;
+    }
+    .completed {
+      text-decoration: line-through;
+      background:  rgb(19, 255, 161);
+    }
 
-/*Style The Container*/
+    /* When clicked on, add a background color and strike out text */
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/*Style The Content*/
-
-.content {
-    background-color: white;
-    min-height: 400px;
-    width: 540px;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/*Style The H1*/
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-/* Style the input */
-
-input[type = "text"] {
-    font-size: medium;
-    margin-top: 50px;
-    margin-bottom: 10px;
-    width: 80%;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    outline: none;
-}
-
-/* Style the "Add" button */
-
-button {
-    padding: 10px 20px;
-    background-color: #ff0000;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-/* Style the list items (ul) */
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-/* Style the list items (li) */
-
-li {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Style The Delete-btn*/
-
-.delete-btn {
-    background-color: #dc5635;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
- /* When clicked on, add a background color and strike out text */
-
- ul li.checked {
-   background:  rgb(12, 171, 107);
-   color: #f7f2f2;
-   text-decoration: line-through;
- }
-
-</style>
-
-<!--Add Some HTML-->
-
-<body>
- 
-   <div class="container">
-        <div class="content">
-            <h1>My To-Do List</h1>
-            <input type="text" id="task-input" placeholder="Add a new task...">
-            <button id="add-btn">Add Task</button>
-            <ul id="task-list"></ul>
-        </div>
+    ul li.checked {
+      background:  rgb(12, 171, 107);
+      color: #f7f2f2;
+      text-decoration: line-through;
+    }
+    
+    </style>  
+  </head>
+  <body>
+    <div class="container">
+      <div id="new-task">
+        <input type="text" placeholder="Enter The Task Here..." />
+        <button id="push">Add</button>
+      </div>
+      <div id="tasks"></div>
     </div>
 
-    <!--Add Some jAVE SCRIPT-->
+    <!-- Script -->
 
 <script>
 
-   const taskInput = document.getElementById('task-input');
-const addBtn = document.getElementById('add-btn');
-const taskList = document.getElementById('task-list');
+//Initial References
 
+      const newTaskInput = document.querySelector("#new-task input");
+const tasksDiv = document.querySelector("#tasks");
+let deleteTasks, editTasks, tasks;
+let updateNote = "";
+let count;
 
-// Add a "checked" symbol when clicking on a list item
+//Function on window load
 
-var list = document.querySelector('div');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-    alert("You Complete This Task!");
+window.onload = () => {
+  updateNote = "";
+  count = Object.keys(localStorage).length;
+  displayTasks();
+};
+
+//Function to Display The Tasks
+
+const displayTasks = () => {
+  if (Object.keys(localStorage).length > 0) {
+    tasksDiv.style.display = "inline-block";
+  } else {
+    tasksDiv.style.display = "none";
   }
-}, false);
 
-//EventListeners
+  //Clear the tasks
 
-addBtn.addEventListener('click', () => {
-    if(taskInput.value !== ""){
-        const taskText = taskInput.value;
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-                                ${taskText}
-                                <button class="delete-btn">Delete</button>
-                                `;
-        taskList.appendChild(listItem);
-        taskInput.value = "";                     
+  tasksDiv.innerHTML = "";
+
+  //Fetch All The Keys in local storage
+
+  let tasks = Object.keys(localStorage);
+  tasks = tasks.sort();
+  for (let key of tasks) {
+    let classValue = "";
+
+    //Get all values
+
+    let value = localStorage.getItem(key);
+    let taskInnerDiv = document.createElement("div");
+    taskInnerDiv.classList.add("task");
+    taskInnerDiv.setAttribute("id", key);
+    taskInnerDiv.innerHTML = `<span id="taskname">${key.split("_")[1]}</span>`;
+
+    //localstorage would store boolean as string so we parse it to boolean back
+
+    let editButton = document.createElement("button");
+    editButton.classList.add("edit");
+    editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+    if (!JSON.parse(value)) {
+      editButton.style.visibility = "visible";
+    } else {
+      editButton.style.visibility = "hidden";
+      taskInnerDiv.classList.add("completed");
     }
+    taskInnerDiv.appendChild(editButton);
+    taskInnerDiv.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
+    tasksDiv.appendChild(taskInnerDiv);
+  }
+
+  //tasks completed
+
+  tasks = document.querySelectorAll(".task");
+  tasks.forEach((element, index) => {
+    element.onclick = () => {
+
+      //local storage update
+
+      if (element.classList.contains("completed")) {
+        updateStorage(element.id.split("_")[0], element.innerText, false);
+      } else {
+        updateStorage(element.id.split("_")[0], element.innerText, true);
+      }
+    };
+  });
+
+  //Edit Tasks
+
+  editTasks = document.getElementsByClassName("edit");
+  Array.from(editTasks).forEach((element, index) => {
+    element.addEventListener("click", (e) => {
+
+      //Stop propogation to outer elements (if removed when we click delete eventually rhw click will move to parent)
+
+      e.stopPropagation();
+
+      //disable other edit buttons when one task is being edited
+
+      disableButtons(true);
+
+      //update input value and remove div
+
+      let parent = element.parentElement;
+      newTaskInput.value = parent.querySelector("#taskname").innerText;
+
+      //set updateNote to the task that is being edited
+
+      updateNote = parent.id;
+
+      //remove task
+
+      parent.remove();
+    });
+  });
+
+  //Delete Tasks
+
+  deleteTasks = document.getElementsByClassName("delete");
+  Array.from(deleteTasks).forEach((element, index) => {
+    element.addEventListener("click", (e) => {
+      e.stopPropagation();
+      //Delete from local storage and remove div
+      let parent = element.parentElement;
+      removeTask(parent.id);
+      parent.remove();
+      count -= 1;
+    });
+  });
+};
+
+//Disable Edit Button
+
+const disableButtons = (bool) => {
+  let editButtons = document.getElementsByClassName("edit");
+  Array.from(editButtons).forEach((element) => {
+    element.disabled = bool;
+  });
+};
+
+//Remove Task from local storage
+
+const removeTask = (taskValue) => {
+  localStorage.removeItem(taskValue);
+  displayTasks();
+};
+
+//Add tasks to local storage
+
+const updateStorage = (index, taskValue, completed) => {
+  localStorage.setItem(`${index}_${taskValue}`, completed);
+  displayTasks();
+};
+
+//Function To Add New Task
+
+document.querySelector("#push").addEventListener("click", () => {
+
+  //Enable the edit button
+
+  disableButtons(false);
+  if (newTaskInput.value.length == 0) {
+    alert("Please Enter A Task");
+  } else {
+
+    //Store locally and display from local storage
+
+    if (updateNote == "") {
+
+      //new task
+
+      updateStorage(count, newTaskInput.value, false);
+    } else {
+
+      //update task
+
+      let existingCount = updateNote.split("_")[0];
+      removeTask(updateNote);
+      updateStorage(existingCount, newTaskInput.value, false);
+      updateNote = "";
+    }
+    count += 1;
+    newTaskInput.value = "";
+  }
 });
 
-taskList.addEventListener('click', (event) => {
-    if(event.target.classList.contains("delete-btn")) {
-        const listItem = event.target.parentElement;
-        alert("Delete This Task!");
-        taskList.removeChild(listItem);
-    }
-})
-  
-  </script>
+</script>
+
 </body>
 </html>
-youutbe Channel Name: Learn Web Development
-video link : https://youtu.be/DjWMYbgI-PQ?si=xprqIOogrOy70Ddl
